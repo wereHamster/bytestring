@@ -1,4 +1,12 @@
 {
+  "type": "module",
   "name": "bytestring",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "sideEffects": false,
+  "exports": {
+    "./base58": "./base58/index.js"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.5"
+  }
 }
