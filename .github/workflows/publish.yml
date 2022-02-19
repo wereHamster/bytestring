@@ -13,7 +13,7 @@ jobs:
           registry-url: "https://registry.npmjs.org"
       - run: npm ci
       - run: ./node_modules/.bin/tsc
-      - run: npm version from-git
+      - run: npm --no-git-tag-version version from-git
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
