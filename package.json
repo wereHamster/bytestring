@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "bytestring",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "sideEffects": false,
   "exports": {
     "./base58": "./base58/index.js"
