@@ -7,6 +7,6 @@
     "./base58": "./base58/index.js"
   },
   "devDependencies": {
-    "typescript": "^4.5.5"
+    "typescript": "^4.6.2"
   }
 }
