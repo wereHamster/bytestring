@@ -38,7 +38,7 @@ const hexTestVectors = [
   ],
 ];
 
-test("base58/encode", (t) => {
+test("base58: encode", (t) => {
   for (const [string, expected] of stringTestVectors) {
     const input = new TextEncoder().encode(string);
     t.is(encode(input), expected, string);
@@ -52,7 +52,7 @@ test("base58/encode", (t) => {
   }
 });
 
-test("base58/decode", (t) => {
+test("base58: decode", (t) => {
   for (const [expected, input] of stringTestVectors) {
     const string = new TextDecoder().decode(decode(input));
     t.is(string, expected, input);
@@ -66,15 +66,31 @@ test("base58/decode", (t) => {
   }
 });
 
-test("base58/roundtrip", (t) => {
+test("base58: roundtrip (decode . encode === id)", (t) => {
   function roundtrip(bs) {
     t.deepEqual(new Uint8Array(bs), decode(encode(bs)));
   }
 
-  // Random Uint8Array.
+  // Input: random Uint8Array.
   fc.assert(fc.property(fc.uint8Array(), roundtrip));
 
-  // Arrays of arbitrary length filled with constant octets.
+  // Input: arrays of arbitrary length filled with constant octets.
   fc.assert(fc.property(fc.array(fc.constant(0x00)), roundtrip));
   fc.assert(fc.property(fc.array(fc.constant(0xff)), roundtrip));
+});
+
+test("base58: roundtrip (endode . decode === id)", (t) => {
+  const alphabet = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+  const arbInput = fc.stringOf(fc.constantFrom(...alphabet.split("")));
+
+  function roundtrip(str) {
+    t.deepEqual(str, encode(decode(str)));
+  }
+
+  // Input: random string.
+  fc.assert(fc.property(arbInput, roundtrip));
+
+  // Input: strings of arbitrary length filled with constant characters.
+  fc.assert(fc.property(fc.stringOf(fc.constant('1')), roundtrip));
+  fc.assert(fc.property(fc.stringOf(fc.constant('z')), roundtrip));
 });
