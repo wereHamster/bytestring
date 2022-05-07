@@ -1,5 +1,6 @@
 import test from "ava";
-import { encode, decode } from "./index.js";
+import * as fc from "fast-check";
+import { decode, encode } from "./index.js";
 
 // https://tools.ietf.org/id/draft-msporny-base58-01.html
 const stringTestVectors = [
@@ -63,4 +64,17 @@ test("base58/decode", (t) => {
     );
     t.deepEqual(decode(input), expected, input);
   }
+});
+
+test("base58/roundtrip", (t) => {
+  function roundtrip(bs) {
+    t.deepEqual(new Uint8Array(bs), decode(encode(bs)));
+  }
+
+  // Random Uint8Array.
+  fc.assert(fc.property(fc.uint8Array(), roundtrip));
+
+  // Arrays of arbitrary length filled with constant octets.
+  fc.assert(fc.property(fc.array(fc.constant(0x00)), roundtrip));
+  fc.assert(fc.property(fc.array(fc.constant(0xff)), roundtrip));
 });
