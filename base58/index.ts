@@ -58,7 +58,7 @@ export function decode(output: string): Uint8Array {
       carry >>= 8;
     }
   }
-  for (let i = 0; i < output.length && output[i] === "1"; i++) {
+  for (let i = 0; i < output.length - 1 && output[i] === "1"; i++) {
     bytes.push(0);
   }
 
