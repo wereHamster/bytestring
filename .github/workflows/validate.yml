@@ -1,0 +1,14 @@
+name: Validate
+
+on: push
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "16.x"
+      - run: npm ci
+      - run: ./node_modules/.bin/tsc --build tsconfig.json
