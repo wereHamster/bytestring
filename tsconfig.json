@@ -6,5 +6,5 @@
     "declaration": true,
     "incremental": true
   },
-  "include": ["base58/index.ts"]
+  "include": ["base58/index.ts", "base64/index.ts"]
 }
