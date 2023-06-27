@@ -7,7 +7,7 @@
     "./base58": "./base58/index.js"
   },
   "devDependencies": {
-    "ava": "^5.3.0",
+    "ava": "^5.3.1",
     "fast-check": "^3.10.0",
     "typescript": "^5.1.3"
   }
