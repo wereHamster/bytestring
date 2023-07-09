@@ -23,8 +23,7 @@ export function encode(input: Uint8Array): string {
 export function decode(output: string): Uint8Array {
   if (typeof Buffer !== 'undefined') {
     // Node.js
-    const buffer = Buffer.from(output, 'base64');
-    return new Uint8Array(buffer);
+    return Buffer.from(output, 'base64');
   } else if (typeof atob !== 'undefined') {
     // Browsers
     const binary = atob(output);
