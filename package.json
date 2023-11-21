@@ -9,6 +9,6 @@
   "devDependencies": {
     "ava": "^5.3.1",
     "fast-check": "^3.13.2",
-    "typescript": "^5.2.2"
+    "typescript": "^5.3.2"
   }
 }
