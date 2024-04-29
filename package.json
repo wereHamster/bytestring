@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "ava": "^6.1.2",
-    "fast-check": "^3.17.2",
+    "fast-check": "^3.18.0",
     "typescript": "^5.4.5"
   }
 }
