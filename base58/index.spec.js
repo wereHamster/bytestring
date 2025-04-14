@@ -81,7 +81,7 @@ test("base58: roundtrip (decode . encode === id)", (t) => {
 
 test("base58: roundtrip (endode . decode === id)", (t) => {
   const alphabet = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
-  const arbInput = fc.stringOf(fc.constantFrom(...alphabet.split("")));
+  const arbInput = fc.string({ unit: fc.constantFrom(...alphabet.split("")) });
 
   function roundtrip(str) {
     t.deepEqual(str, encode(decode(str)));
@@ -91,6 +91,6 @@ test("base58: roundtrip (endode . decode === id)", (t) => {
   fc.assert(fc.property(arbInput, roundtrip));
 
   // Input: strings of arbitrary length filled with constant characters.
-  fc.assert(fc.property(fc.stringOf(fc.constant('1')), roundtrip));
-  fc.assert(fc.property(fc.stringOf(fc.constant('z')), roundtrip));
+  fc.assert(fc.property(fc.string({ unit: fc.constant('1') }), roundtrip));
+  fc.assert(fc.property(fc.string({ unit: fc.constant('z') }), roundtrip));
 });
