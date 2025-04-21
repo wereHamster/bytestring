@@ -1,3 +1,4 @@
+.direnv/
 node_modules/
 
 tsconfig.tsbuildinfo
@@ -5,4 +6,3 @@ tsconfig.tsbuildinfo
 *.js
 *.js.map
 *.d.ts
-
