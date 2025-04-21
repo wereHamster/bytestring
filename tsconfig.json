@@ -1,5 +1,6 @@
 {
   "references": [
+    { "path": "./tsconfig.es.json" },
     { "path": "./tsconfig.browser.json" },
     { "path": "./tsconfig.node.json" }
   ],
