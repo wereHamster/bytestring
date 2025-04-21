@@ -28,7 +28,7 @@ test("base64: decode", (t) => {
 
 test("base64: roundtrip (decode . encode === id)", (t) => {
   function roundtrip(bs) {
-    assert.deepEqual(new Uint8Array(bs), decode(encode(bs)));
+    assert.deepEqual(new Uint8Array(bs), new Uint8Array(decode(encode(bs))));
   }
 
   // Input: random Uint8Array.
@@ -43,7 +43,7 @@ test("base64: roundtrip (encode . decode === id)", (t) => {
   const arbInput = fc.uint8Array().map(encode);
 
   function roundtrip(str) {
-    assert.deepEqual(str, encode(decode(str)));
+    assert.equal(str, encode(decode(str)));
   }
 
   // Input: random string.
