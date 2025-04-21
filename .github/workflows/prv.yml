@@ -25,4 +25,4 @@ jobs:
       - run: npm ci
 
       - run: ./node_modules/.bin/tsc --build tsconfig.json
-      - run: ./node_modules/.bin/ava
+      - run: node --test
