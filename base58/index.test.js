@@ -1,4 +1,5 @@
-import test from "ava";
+import { test } from "node:test";
+import assert from "node:assert/strict";
 import * as fc from "fast-check";
 import { decode, encode } from "./index.js";
 
@@ -41,34 +42,34 @@ const hexTestVectors = [
 test("base58: encode", (t) => {
   for (const [string, expected] of stringTestVectors) {
     const input = new TextEncoder().encode(string);
-    t.is(encode(input), expected, string);
+    assert.equal(encode(input), expected, string);
   }
 
   for (const [hex, expected] of hexTestVectors) {
     const input = Uint8Array.from(
-      hex.match(/[\da-fA-F]{2}/g).map((h) => parseInt(h, 16))
+      hex.match(/[\da-fA-F]{2}/g).map((h) => parseInt(h, 16)),
     );
-    t.is(encode(input), expected, hex);
+    assert.equal(encode(input), expected, hex);
   }
 });
 
 test("base58: decode", (t) => {
   for (const [expected, input] of stringTestVectors) {
     const string = new TextDecoder().decode(decode(input));
-    t.is(string, expected, input);
+    assert.equal(string, expected, input);
   }
 
   for (const [hex, input] of hexTestVectors) {
     const expected = Uint8Array.from(
-      hex.match(/[\da-fA-F]{2}/g).map((h) => parseInt(h, 16))
+      hex.match(/[\da-fA-F]{2}/g).map((h) => parseInt(h, 16)),
     );
-    t.deepEqual(decode(input), expected, input);
+    assert.deepEqual(decode(input), expected, input);
   }
 });
 
 test("base58: roundtrip (decode . encode === id)", (t) => {
   function roundtrip(bs) {
-    t.deepEqual(new Uint8Array(bs), decode(encode(bs)));
+    assert.deepEqual(new Uint8Array(bs), decode(encode(bs)));
   }
 
   // Input: random Uint8Array.
@@ -79,18 +80,18 @@ test("base58: roundtrip (decode . encode === id)", (t) => {
   fc.assert(fc.property(fc.array(fc.constant(0xff)), roundtrip));
 });
 
-test("base58: roundtrip (endode . decode === id)", (t) => {
+test("base58: roundtrip (encode . decode === id)", (t) => {
   const alphabet = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
   const arbInput = fc.string({ unit: fc.constantFrom(...alphabet.split("")) });
 
   function roundtrip(str) {
-    t.deepEqual(str, encode(decode(str)));
+    assert.deepEqual(str, encode(decode(str)));
   }
 
   // Input: random string.
   fc.assert(fc.property(arbInput, roundtrip));
 
   // Input: strings of arbitrary length filled with constant characters.
-  fc.assert(fc.property(fc.string({ unit: fc.constant('1') }), roundtrip));
-  fc.assert(fc.property(fc.string({ unit: fc.constant('z') }), roundtrip));
+  fc.assert(fc.property(fc.string({ unit: fc.constant("1") }), roundtrip));
+  fc.assert(fc.property(fc.string({ unit: fc.constant("z") }), roundtrip));
 });
