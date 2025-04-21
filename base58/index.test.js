@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import * as fc from "fast-check";
-import { decode, encode } from "./index.js";
+import { decode, encode } from "./index.browser.js";
 
 // https://tools.ietf.org/id/draft-msporny-base58-01.html
 const stringTestVectors = [
