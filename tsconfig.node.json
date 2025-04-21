@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "lib": ["ES2021"],
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "declaration": true,
+    "incremental": true
+  },
+  "include": ["base64/index.node.ts"]
+}

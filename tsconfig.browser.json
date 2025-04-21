@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "lib": ["ES2021", "DOM"],
+    "types": [],
+    "sourceMap": true,
+    "declaration": true,
+    "incremental": true
+  },
+  "include": ["base58/index.browser.ts", "base64/index.browser.ts"]
+}
