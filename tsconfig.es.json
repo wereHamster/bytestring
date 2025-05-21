@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "lib": ["ES2021"],
+    "types": [],
+    "sourceMap": true,
+    "declaration": true,
+    "incremental": true
+  },
+  "include": ["base58/index.es.ts"]
+}
