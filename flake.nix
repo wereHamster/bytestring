@@ -4,7 +4,7 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
+  outputs = { nixpkgs, flake-utils, ... }:
     flake-utils.lib.eachDefaultSystem
       (system:
         let
@@ -15,7 +15,19 @@
           devShells.default = pkgs.mkShell {
             buildInputs = [
               pkgs.nodejs
+              pkgs.pnpm
             ];
+          };
+
+          devShells.workflow = pkgs.mkShell {
+            buildInputs = [
+              pkgs.nodejs
+              pkgs.pnpm
+            ];
+
+            shellHook = ''
+              pnpm install --frozen-lockfile >/dev/null 2>&1
+            '';
           };
         }
       );
