@@ -28,7 +28,7 @@ Tip: use [TextEncoder](https://developer.mozilla.org/en-US/docs/Web/API/TextEnco
 import * as base58 from 'bytestring/base58';
 
 // Assume you have some binary data.
-let someBinaryData = new Uint8Array([ /* …  */ ]);
+const someBinaryData = new Uint8Array([ /* …  */ ]);
 
 // Encoding with the base58 scheme gives you a (longer) string.
 const encodedString = base58.encode(someBinaryData);
