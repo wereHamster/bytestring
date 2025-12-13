@@ -1,5 +1,7 @@
 # bytestring
 
+[![npm version][npm-version-src]][npm-version-href]
+
 The `bytestring` package provides functions for manipulating byte strings (~
 arrays of octets, Uint8Array in modern JavaScript).
 
@@ -48,3 +50,8 @@ The `bytestring` package is automatically published to [npmjs.org](https://www.n
 ## References
 
 - https://en.wikipedia.org/wiki/Binary-to-text_encoding
+
+<!-- Badges -->
+
+[npm-version-src]: https://img.shields.io/npm/v/bytestring?style=flat&colorA=131511&colorB=3673b1
+[npm-version-href]: https://npmjs.com/package/bytestring
