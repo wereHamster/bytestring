@@ -30,7 +30,7 @@ import * as base58 from 'bytestring/base58';
 // Assume you have some binary data.
 let someBinaryData = new Uint8Array([ /* …  */ ]);
 
-// Encoded with base58 scheme gives you a (longer) string.
+// Encoding with the base58 scheme gives you a (longer) string.
 const encodedString = base58.encode(someBinaryData);
 
 // Now you can show the string to the user, send in an email etc.
