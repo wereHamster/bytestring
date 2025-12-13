@@ -33,7 +33,7 @@ let someBinaryData = new Uint8Array([ /* …  */ ]);
 // Encoding with the base58 scheme gives you a (longer) string.
 const encodedString = base58.encode(someBinaryData);
 
-// Now you can show the string to the user, send in an email etc.
+// Now you can show the string to the user, send it in an email etc.
 console.log('Base58:', encodedString);
 ```
 
