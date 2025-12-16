@@ -53,5 +53,5 @@ The `bytestring` package is automatically published to [npmjs.org](https://www.n
 
 <!-- Badges -->
 
-[npm-version-src]: https://img.shields.io/npm/v/bytestring?style=flat&colorA=131511&colorB=3673b1
+[npm-version-src]: https://img.shields.io/npm/v/bytestring?style=for-the-badge&colorA=131511&colorB=3673b1
 [npm-version-href]: https://npmjs.com/package/bytestring
