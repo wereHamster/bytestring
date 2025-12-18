@@ -10,15 +10,15 @@ importers:
     devDependencies:
       fast-check:
         specifier: ^4.3.0
-        version: 4.3.0
+        version: 4.4.0
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
 
 packages:
 
-  fast-check@4.3.0:
-    resolution: {integrity: sha512-JVw/DJSxVKl8uhCb7GrwanT9VWsCIdBkK3WpP37B/Au4pyaspriSjtrY2ApbSFwTg3ViPfniT13n75PhzE7VEQ==}
+  fast-check@4.4.0:
+    resolution: {integrity: sha512-s87BFAp8YaWYOBXjbTxeotaOhmA4hPYAyk9gBTFxdab25P6eAlqrryUvVMA2qd9bT/0Xq+YNJGtoVhJd/BxI4g==}
     engines: {node: '>=12.17.0'}
 
   pure-rand@7.0.1:
@@ -31,7 +31,7 @@ packages:
 
 snapshots:
 
-  fast-check@4.3.0:
+  fast-check@4.4.0:
     dependencies:
       pure-rand: 7.0.1
 
