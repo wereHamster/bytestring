@@ -1,6 +1,6 @@
 const bytesToHex = (() => {
   const s = Array.from({ length: 256 }).map((_, i) =>
-    i.toString(16).padStart(2, "0")
+    i.toString(16).padStart(2, "0"),
   );
   return (uint8a: Uint8Array) => [...uint8a].map((o) => s[o]).join("");
 })();
@@ -13,7 +13,7 @@ export function encode(input: Uint8Array): string {
   }
 
   // Uint8Array -> BigInt (Big Endian)
-  let x = BigInt("0x" + bytesToHex(input));
+  let x = BigInt(`0x${bytesToHex(input)}`);
 
   const output = [];
   while (x > 0n) {
@@ -40,7 +40,7 @@ export function decode(output: string): Uint8Array {
     const value = letters.indexOf(char);
     if (value === undefined) {
       throw new Error(
-        `base58.decode received invalid input. Character '${char}' is not in the base58 alphabet.`
+        `base58.decode received invalid input. Character '${char}' is not in the base58 alphabet.`,
       );
     }
     for (let j = 0; j < bytes.length; j++) {
