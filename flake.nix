@@ -16,6 +16,7 @@
             buildInputs = [
               pkgs.nodejs
               pkgs.pnpm
+              pkgs.biome
             ];
           };
 
@@ -23,6 +24,7 @@
             buildInputs = [
               pkgs.nodejs
               pkgs.pnpm
+              pkgs.biome
             ];
 
             shellHook = ''

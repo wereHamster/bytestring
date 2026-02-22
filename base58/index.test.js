@@ -1,5 +1,5 @@
-import { test } from "node:test";
 import assert from "node:assert/strict";
+import { test } from "node:test";
 import * as fc from "fast-check";
 import { decode, encode } from "./index.js";
 
@@ -39,7 +39,7 @@ const hexTestVectors = [
   ],
 ];
 
-test("base58: encode", (t) => {
+test("base58: encode", () => {
   for (const [string, expected] of stringTestVectors) {
     const input = new TextEncoder().encode(string);
     assert.equal(encode(input), expected, string);
@@ -53,7 +53,7 @@ test("base58: encode", (t) => {
   }
 });
 
-test("base58: decode", (t) => {
+test("base58: decode", () => {
   for (const [expected, input] of stringTestVectors) {
     const string = new TextDecoder().decode(decode(input));
     assert.equal(string, expected, input);
@@ -67,7 +67,7 @@ test("base58: decode", (t) => {
   }
 });
 
-test("base58: roundtrip (decode . encode === id)", (t) => {
+test("base58: roundtrip (decode . encode === id)", () => {
   function roundtrip(bs) {
     assert.deepEqual(new Uint8Array(bs), decode(encode(bs)));
   }
@@ -80,7 +80,7 @@ test("base58: roundtrip (decode . encode === id)", (t) => {
   fc.assert(fc.property(fc.array(fc.constant(0xff)), roundtrip));
 });
 
-test("base58: roundtrip (encode . decode === id)", (t) => {
+test("base58: roundtrip (encode . decode === id)", () => {
   const alphabet = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
   const arbInput = fc.string({ unit: fc.constantFrom(...alphabet.split("")) });
 
