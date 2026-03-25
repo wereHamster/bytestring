@@ -32,10 +32,6 @@
               pkgs.pnpm
               pkgs.biome
             ];
-
-            shellHook = ''
-              pnpm install --frozen-lockfile >/dev/null 2>&1
-            '';
           };
         }
       );
