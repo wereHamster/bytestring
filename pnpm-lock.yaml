@@ -21,8 +21,8 @@ packages:
     resolution: {integrity: sha512-h7H6Dm0Fy+H4ciQYFxFjXnXkzR2kr9Fb22c0UBpHnm59K2zpr2t13aPTHlltFiNT6zuxp6HMPAVVvgur4BLdpA==}
     engines: {node: '>=12.17.0'}
 
-  pure-rand@8.1.0:
-    resolution: {integrity: sha512-53B3MB8wetRdD6JZ4W/0gDKaOvKwuXrEmV1auQc0hASWge8rieKV4PCCVNVbJ+i24miiubb4c/B+dg8Ho0ikYw==}
+  pure-rand@8.4.0:
+    resolution: {integrity: sha512-IoM8YF/jY0hiugFo/wOWqfmarlE6J0wc6fDK1PhftMk7MGhVZl88sZimmqBBFomLOCSmcCCpsfj7wXASCpvK9A==}
 
   typescript@6.0.2:
     resolution: {integrity: sha512-bGdAIrZ0wiGDo5l8c++HWtbaNCWTS4UTv7RaTH/ThVIgjkveJt83m74bBHMJkuCbslY8ixgLBVZJIOiQlQTjfQ==}
@@ -33,8 +33,8 @@ snapshots:
 
   fast-check@4.6.0:
     dependencies:
-      pure-rand: 8.1.0
+      pure-rand: 8.4.0
 
-  pure-rand@8.1.0: {}
+  pure-rand@8.4.0: {}
 
   typescript@6.0.2: {}
