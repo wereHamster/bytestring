@@ -8,6 +8,42 @@ permissions:
   contents: read
 
 jobs:
+  check-biome-schema:
+    if: github.event.pull_request.draft == false
+    name: Check Biome Schema
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - uses: DeterminateSystems/nix-installer-action@ef8a148080ab6020fd15196c2084a2eea5ff2d25 # v22
+      - run: nix run .#nix-develop .#workflow
+
+      - run: |
+          VERSION=$(biome --version | cut -d " " -f 3)
+
+          find . -name biome.json -exec sh -c '
+            for file do
+              jq --arg ver "$VERSION" \
+              ".\"\$schema\" |= gsub(\"schemas/[0-9.]+/schema.json\"; \"schemas/\" + \$ver + \"/schema.json\")" \
+              "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+            done
+          ' sh {} +
+
+      - id: create-pull-request
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          title: "Update Biome schema in #${{ github.event.pull_request.number }}"
+          branch: update-biome-schema-${{ github.event.pull_request.number }}
+          base: ${{ github.event.pull_request.head.ref }}
+
+      - if: ${{ steps.create-pull-request.outputs.pull-request-number }}
+        run: exit 1
+
   validate:
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
