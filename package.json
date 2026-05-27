@@ -14,7 +14,7 @@
   "devDependencies": {
     "@changesets/cli": "^2.31.0",
     "@changesets/get-github-info": "^0.8.0",
-    "fast-check": "^4.7.0",
+    "fast-check": "^4.8.0",
     "typescript": "^6.0.3"
   },
   "repository": {
