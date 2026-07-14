@@ -20,7 +20,7 @@
     in
     {
       packages = forAllSystems (pkgs: {
-        nix-develop = nix-develop.packages.${pkgs.system}.default;
+        nix-develop = nix-develop.packages.${pkgs.stdenv.hostPlatform.system}.default;
       });
 
       devShells = forAllSystems (pkgs: {
