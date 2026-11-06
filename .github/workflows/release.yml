@@ -56,7 +56,6 @@ jobs:
           gh release create "v$version" --target "$GITHUB_SHA" --title "v$version" --notes-file "$notes"
         env:
           GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
           BEFORE: ${{ github.event.before }}
 
   publish:
