@@ -20,14 +20,17 @@ jobs:
 
     permissions:
       contents: write
-      actions: write
+
+    outputs:
+      version: ${{ steps.release.outputs.version }}
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
 
-      - env:
+      - id: release
+        env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
           BEFORE: ${{ github.event.before }}
@@ -39,6 +42,8 @@ jobs:
             echo "Version is still $version, nothing to release"
             exit 0
           fi
+
+          echo "version=$version" >> "$GITHUB_OUTPUT"
 
           if gh release view "v$version" > /dev/null 2>&1; then
             echo "Release v$version already exists"
@@ -53,4 +58,34 @@ jobs:
           fi
 
           gh release create "v$version" --target "$GITHUB_SHA" --title "v$version" --notes-file "$notes"
-          gh workflow run publish.yml --ref "v$version"
+
+  publish:
+    name: Publish
+    needs: release
+    if: needs.release.outputs.version != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # ---------------------------------------------------------------------
+      # Setup
+
+      - uses: DeterminateSystems/nix-installer-action@3138316df39ed29be04236d7ffc686fa525866aa # v23
+      - run: nix run .#nix-develop .#workflow
+      - run: pnpm install
+
+      # ---------------------------------------------------------------------
+      # Build
+
+      - run: ./node_modules/.bin/tsc
+
+      # ---------------------------------------------------------------------
+      # Publish
+
+      - run: pnpm stage publish --registry https://registry.npmjs.org --access public --no-git-checks
