@@ -45,7 +45,9 @@ Pull requests are welcome.
 
 ## Publishing
 
-The `bytestring` package is automatically published to [npmjs.org](https://www.npmjs.com/package/bytestring) upon the creation of a new release on GitHub.
+Releases are fully automated.
+Merging the release pull request, which updates the version in `package.json`, creates the GitHub release.
+The package is then staged for publishing to [npmjs.org](https://www.npmjs.com/package/bytestring), and the release is completed by approving the staged publish on npm.
 
 ## References
 
