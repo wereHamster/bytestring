@@ -25,16 +25,18 @@ Because the function names are not unique across modules, it is recommended to u
 Tip: use [TextEncoder](https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder) and [TextDecoder](https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder) to convert between string and Uint8Array.
 
 ```typescript
-import * as base58 from 'bytestring/base58';
+import * as base58 from "bytestring/base58";
 
 // Assume you have some binary data.
-const someBinaryData = new Uint8Array([ /* …  */ ]);
+const someBinaryData = new Uint8Array([
+  /* …  */
+]);
 
 // Encoding with the base58 scheme gives you a (longer) string.
 const encodedString = base58.encode(someBinaryData);
 
 // Now you can show the string to the user, send it in an email etc.
-console.log('Base58:', encodedString);
+console.log("Base58:", encodedString);
 ```
 
 ## Project Management
